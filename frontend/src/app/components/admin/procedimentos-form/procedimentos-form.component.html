@@ -1,0 +1,1162 @@
+<div class="container2">
+  <div class="box">
+    <div class="d">
+      <h5 style="margin-bottom: 25px; text-align: center; color: white">
+        DADOS GERAIS
+      </h5>
+      <button
+        style="
+          margin-top: -5%;
+          cursor: pointer;
+          padding: 10px 20px;
+          border-radius: 8px;
+          background-color: rgb(126, 182, 204);
+          font-weight: bold;
+          color: white;
+          font-size: 1rem;
+          width: 100%;
+        "
+        data-toggle="modal"
+        data-target="#ubs"
+        (click)="iniciaUbs()"
+      >
+        ADICIONAR UBS
+      </button>
+
+      <button
+        style="
+          margin-top: 2%;
+          cursor: pointer;
+          padding: 10px 20px;
+          border-radius: 8px;
+          width: 100%;
+          font-weight: bold;
+          font-size: 1rem;
+          color: white;
+          background-color: rgb(126, 182, 204);
+        "
+        data-toggle="modal"
+        data-target="#ativ"
+        (click)="iniciaAtiv()"
+      >
+        ADICIONAR PROCEDIMENTOS
+      </button>
+
+      <h5
+        style="
+          margin-top: 25px;
+          margin-bottom: -10px;
+          text-align: center;
+          color: white;
+        "
+      >
+        DADOS DO PROCEDIMENTO
+      </h5>
+      <button
+        style="
+          margin-top: 6%;
+          padding: 10px 20px;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 1rem;
+          color: white;
+          background-color: rgb(175, 167, 149);
+          width: 100%;
+        "
+        data-toggle="modal"
+        data-target="#modalHoras"
+        (click)="iniciaHoras()"
+      >
+        I- CADASTRAR HORÁRIOS
+      </button>
+
+      <button
+        style="
+          margin-top: 2%;
+          padding: 10px 20px;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 1rem;
+          color: white;
+          background-color: rgb(175, 167, 149);
+          width: 100%;
+        "
+        data-toggle="modal"
+        data-target="#modalDatas"
+        (click)="iniciaData()"
+      >
+        II- CADASTRAR DATAS
+      </button>
+
+      <button
+        style="
+          margin-top: 2%;
+          padding: 10px 20px;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 1rem;
+          color: white;
+          background-color: rgb(175, 167, 149);
+          width: 100%;
+        "
+        data-toggle="modal"
+        data-target="#modalDetalhe"
+        (click)="iniciaDetalhe()"
+      >
+        III- ESPECIFICAR PROCEDIMENTO
+      </button>
+
+      <button
+        style="
+          margin-top: 2%;
+          padding: 20px;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 1rem;
+          color: white;
+          background-color: rgb(126, 182, 204);
+          width: 100%;
+        "
+        data-toggle="modal"
+        data-target="#procedimento"
+        (click)="iniciaProc()"
+      >
+        CONCLUIR PROCEDIMENTO
+      </button>
+      <div
+        style="
+          font-size: 1rem;
+          text-align: center;
+          margin-top: 20px;
+          color: white;
+          cursor: pointer;
+        "
+      >
+        <a data-toggle="modal" data-target="#passos"
+          >Como cadastrar meus dados?</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal UBS NEW-->
+<div
+  class="modal fade"
+  style="position: absolute; margin: 2% 3%"
+  id="ubs"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document" style="margin: 20px auto">
+    <div class="modal-content" style="margin: 0 auto; padding: 5px">
+      <div class="modal-header">
+        <h5 style="color: red" class="modal-title" id="ubs">UBS CADASTRADAS</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true" style="font-size: 2.5rem; color: red"
+            >&times;</span
+          >
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="card" style="width: 100%">
+            <div class="card-body" style="padding: 24px 8px">
+              <form
+                (ngSubmit)="formm.form.valid && saveUbs(formm)"
+                #formm="ngForm"
+                novalidate
+              >
+                <div class="form-group row" style="margin-top: -20px">
+                  <label
+                    style="margin-top: -20px"
+                    for="ubs"
+                    class="mt-1 col-sm-2 col-form-label"
+                    >UBS:</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      style="padding: 20px 5px"
+                      class="form-control"
+                      name="ubs"
+                      id="ubs"
+                      [(ngModel)]="ubs.ubs"
+                    />
+                  </div>
+                </div>
+
+                <div style="margin-bottom: -20px; float: right">
+                  <button
+                    type="reset"
+                    style="margin: 2px; padding: 3px"
+                    class="btn btn-secondary btn-add-car"
+                    (click)="limparUbs()"
+                  >
+                    Limpar
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-add-car"
+                    style="margin: 2px 2px 3px; padding: 3px"
+                  >
+                    Salvar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="style-modal">
+            <div class="divContainer">
+              <div
+                class="conteudoModal"
+                style="
+                  min-height: 300px;
+                  overflow-y: scroll;
+                  margin-bottom: 5px;
+                "
+              >
+                <table class="table">
+                  <thead>
+                    <tr
+                      style="
+                        position: sticky;
+                        top: -2px;
+                        background-color: #ffff;
+                      "
+                    >
+                      <th scope="col">#</th>
+                      <th scope="col">UBS</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let obj of ubs$; index as i">
+                      <td scope="row">{{ i + 1 }}</td>
+                      <td>{{ obj.ubs }}</td>
+                      <td>
+                        <div class="s-c">
+                          <a class="s-b" (click)="editUbs(obj)">Editar</a>
+                          <a class="s-b" (click)="deleteUbs(obj)">Deletar</a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal Atividades NEW-->
+<div
+  class="modal fade"
+  style="position: absolute; margin: 2% 3%"
+  id="ativ"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document" style="margin: 20px auto">
+    <div class="modal-content" style="margin: 0 auto; padding: 5px">
+      <div class="modal-header">
+        <h5 style="color: red" class="modal-title" id="ativ">
+          PROCEDIMENTOS CADASTRADOS
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true" style="font-size: 2.5rem; color: red"
+            >&times;</span
+          >
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="card" style="width: 100%">
+            <div class="card-body" style="padding: 24px 8px">
+              <form
+                (ngSubmit)="formm.form.valid && saveAtiv(formm)"
+                #formm="ngForm"
+                novalidate
+              >
+                <div class="form-group row" style="margin-top: -20px">
+                  <label
+                    style="margin-top: -20px"
+                    for="ativ"
+                    class="mt-1 col-sm-3 col-form-label"
+                    >ATIVIDADE:</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      style="padding: 20px 5px"
+                      class="form-control"
+                      name="ativ"
+                      id="ativ"
+                      [(ngModel)]="ativ.atividade"
+                    />
+                  </div>
+                </div>
+
+                <div style="margin-bottom: -20px; float: right">
+                  <button
+                    type="reset"
+                    style="margin: 2px; padding: 3px"
+                    class="btn btn-secondary btn-add-car"
+                    (click)="limparAtiv()"
+                  >
+                    Limpar
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-add-car"
+                    style="margin: 2px 2px 3px; padding: 3px"
+                  >
+                    Salvar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="style-modal">
+            <div class="divContainer">
+              <div
+                class="conteudoModal"
+                style="
+                  min-height: 300px;
+                  overflow-y: scroll;
+                  margin-bottom: 5px;
+                "
+              >
+                <table class="table">
+                  <thead>
+                    <tr
+                      style="
+                        position: sticky;
+                        top: -2px;
+                        background-color: #ffff;
+                      "
+                    >
+                      <th scope="col">#</th>
+                      <th scope="col">ATIVIDADES</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let obj of ativ$; index as i">
+                      <td scope="row">{{ i + 1 }}</td>
+                      <td>{{ obj.atividade }}</td>
+                      <td>
+                        <div class="s-c">
+                          <a class="s-b" (click)="editAtiv(obj)">Editar</a>
+                          <a class="s-b" (click)="deleteAtiv(obj)">Deletar</a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal HORAS-->
+<div
+  class="modal fade"
+  style="position: absolute; margin: 2% 3%"
+  id="modalHoras"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" style="margin: 20px auto" role="document">
+    <div class="modal-content" style="margin: 0 auto; padding: 5px">
+      <div class="modal-header">
+        <h5 style="color: red" class="modal-title" id="estabelecimento">
+          <span class="passo">PASSO 1</span> - CADASTRAR HORAS
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true" style="font-size: 2.5rem; color: red"
+            >&times;</span
+          >
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="card" style="width: 100%">
+            <div class="card-body" style="padding: 24px 8px">
+              <form
+                (ngSubmit)="formm2.form.valid && saveHoras(formm2)"
+                #formm2="ngForm"
+                novalidate
+              >
+                <div class="form-group row" style="margin-top: -20px">
+                  <label
+                    style="margin-top: -20px"
+                    for="inicioM"
+                    class="mt-1 col-sm-3 col-form-label"
+                    >Data Inicio:</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="datetime-local"
+                      style="padding: 20px 5px"
+                      class="form-control"
+                      id="inicioM"
+                      name="inicioM"
+                      [(ngModel)]="inicioM"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group row" style="margin-top: -15px">
+                  <label
+                    style="margin-top: -20px"
+                    for="fimM"
+                    class="mt-1 col-sm-3 col-form-label"
+                    >Data Fim:</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="datetime-local"
+                      style="padding: 20px 5px"
+                      class="form-control"
+                      id="fimM"
+                      name="fimM"
+                      [(ngModel)]="fimM"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group row" style="margin-top: -15px">
+                  <label
+                    style="margin-top: -20px"
+                    for="intervalo"
+                    class="mt-1 col-sm-3 col-form-label"
+                    >Intervalo:</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="number"
+                      style="padding: 20px 5px"
+                      class="form-control"
+                      placeholder="Apenas numeros"
+                      id="intervalo"
+                      name="intervalo"
+                      [(ngModel)]="intervalo"
+                    />
+                  </div>
+                </div>
+
+                <div
+                  style="margin-top: -10px; margin-bottom: -20px; float: right"
+                >
+                  <button
+                    type="reset"
+                    style="margin: 2px; padding: 3px"
+                    class="btn btn-warning btn-add-car"
+                    (click)="descartarAllHoras()"
+                  >
+                    Descartar
+                  </button>
+                  <button
+                    type="reset"
+                    style="margin: 2px; padding: 3px"
+                    class="btn btn-secondary btn-add-car"
+                    (click)="limparHora()"
+                  >
+                    Limpar
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-add-car"
+                    style="margin: 2px 2px 3px; padding: 3px"
+                  >
+                    Salvar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="style-modal">
+            <div class="divContainer">
+              <div
+                class="conteudoModal"
+                style="height: 250px; overflow-y: scroll; margin-bottom: 2px"
+              >
+                <table class="table">
+                  <thead>
+                    <tr
+                      style="
+                        position: sticky;
+                        top: -2px;
+                        background-color: #ffff;
+                      "
+                    >
+                      <th scope="col">#</th>
+                      <th scope="col">HORAS</th>
+                      <th scope="col">Nº Reg: {{ horas$.length }}</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    style="
+                      min-height: 300px;
+                      overflow-y: scroll;
+                      margin-bottom: 30px;
+                    "
+                  >
+                    <tr *ngFor="let obj of horas$; index as i">
+                      <td scope="row">{{ i + 1 }}</td>
+                      <td>{{ obj.hr }}</td>
+                      <td>
+                        <div class="s-c">
+                          <!--a
+                            class="s-b"
+                            (click)="editHoras(obj)"
+                            >Editar</a-->
+                          <a class="s-b" (click)="deleteHora(obj)">Deletar</a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal DATA-->
+<div
+  class="modal fade"
+  id="modalDatas"
+  style="position: absolute; margin: 2% 3%"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" style="margin: 20px auto" role="document">
+    <div class="modal-content" style="margin: 0 auto; padding: 5px">
+      <div class="modal-header">
+        <h5 style="color: red" class="modal-title" id="data">
+          <span class="passo">PASSO 2</span> - CADASTRAR DATAS
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true" style="font-size: 2.5rem; color: red"
+            >&times;</span
+          >
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="card" style="width: 100%">
+            <div class="card-body" style="padding: 20px 8px">
+              <form
+                (ngSubmit)="formm3.form.valid && saveData(formm3)"
+                #formm3="ngForm"
+                novalidate
+              >
+                <div class="form-group row" style="margin-top: -20px">
+                  <label
+                    style="margin-top: -20px"
+                    for="dia"
+                    class="mt-1 col-sm-6 col-form-label"
+                    >DATA DO PROCEDIMENTO:</label
+                  >
+                  <div class="col-sm-6 mt-1">
+                    <input
+                      style="padding: 20px 5px"
+                      class="form-control"
+                      type="date"
+                      id="data"
+                      name="data"
+                      [(ngModel)]="data.dia"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group row" style="margin-top: -20px">
+                  <label
+                    style="margin-top: -20px"
+                    for="controle"
+                    class="mt-1 col-sm-4 col-form-label"
+                    >CONTROLE ADMIN:</label
+                  >
+                  <div class="col-sm-8 mt-1">
+                    <input
+                      style="padding: 20px 5px"
+                      class="form-control"
+                      type="text"
+                      placeholder="Ex: dent-ubs-extração"
+                      id="controle"
+                      name="controle"
+                      [(ngModel)]="data.controle"
+                    />
+                  </div>
+                </div>
+
+                <div style="margin-bottom: -20px; float: right">
+                  <button
+                    type="reset"
+                    style="margin: 2px; padding: 3px"
+                    class="btn btn-warning btn-add-car"
+                    (click)="atualizarData()"
+                  >
+                    Editar|Ativos
+                  </button>
+                  <button
+                    type="reset"
+                    style="margin: 2px; padding: 3px"
+                    class="btn btn-secondary btn-add-car"
+                    (click)="limpaData()"
+                  >
+                    Limpar
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-add-car"
+                    style="margin: 2px 2px 3px; padding: 3px"
+                  >
+                    Salvar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="style-modal">
+            <div class="divContainer">
+              <div
+                class="conteudoModal"
+                style="height: 280px; overflow-y: scroll; margin-bottom: 2px"
+              >
+                <table class="table">
+                  <thead>
+                    <tr
+                      style="
+                        position: sticky;
+                        top: -2px;
+                        background-color: #ffff;
+                      "
+                    >
+                      <th scope="col">#</th>
+                      <th scope="col">Datas</th>
+                      <th scope="col">Controle</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <span
+                    *ngIf="horas$.length > 0"
+                    style="font-size: 1rem; color: blue"
+                    >Existe horários a lançar...</span
+                  >
+                  <tbody>
+                    <tr *ngFor="let data of datas$; index as i">
+                      <td scope="row">{{ i + 1 }}</td>
+                      <td>{{ data.dia | date: "dd/MM/yyyy" }}</td>
+                      <td>{{ data.controle }}</td>
+                      <td>
+                        <div class="s-c">
+                          <a class="s-b" (click)="editDatas(data)">Editar</a>
+                          <a class="s-b" (click)="deleteData(data)">Deletar</a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal DETALHE-->
+<div
+  class="modal fade"
+  id="modalDetalhe"
+  style="position: absolute; margin: 2% 3%"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" style="margin: 20px auto" role="document">
+    <div class="modal-content" style="margin: 0 auto; padding: 5px">
+      <div class="modal-header">
+        <h5 style="color: red" class="modal-title" id="data">
+          <span class="passo">PASSO 3</span> - DADOS DO PROCEDIMENTO
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true" style="font-size: 2.5rem; color: red"
+            >&times;</span
+          >
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="card" style="width: 100%">
+            <div class="card-body" style="padding: 20px 8px">
+              <form
+                (ngSubmit)="formm3.form.valid && saveDetalhe(formm3)"
+                #formm3="ngForm"
+                novalidate
+              >
+                <div class="form-group row" style="margin-top: -20px">
+                  <label
+                    style="margin-top: -20px"
+                    for="nome"
+                    class="mt-1 col-sm-3 col-form-label"
+                    >TIPO:</label
+                  >
+                  <div class="col-sm-9 mt-1">
+                    <input
+                      type="text"
+                      style="padding: 20px 5px"
+                      class="form-control"
+                      placeholder="Ex: Atendimento Odontológico"
+                      id="nome"
+                      name="nome"
+                      [(ngModel)]="detalhe.detalhe"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group row" style="margin-top: -20px">
+                  <label
+                    style="margin-top: -20px"
+                    for="prioridade"
+                    class="mt-1 col-sm-3 col-form-label"
+                    >PRIORIDADE:</label
+                  >
+                  <div class="col-sm-9 mt-1">
+                    <input
+                      type="text"
+                      style="padding: 20px 5px"
+                      class="form-control"
+                      placeholder="Ex: Público Geral"
+                      id="prioridade"
+                      name="prioridade"
+                      [(ngModel)]="detalhe.prioridade"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group row" style="margin-top: -20px">
+                  <label
+                    style="margin-top: -20px"
+                    for="categoria"
+                    class="mt-1 col-sm-3 col-form-label"
+                    >CATEGORIA:</label
+                  >
+                  <div class="col-sm-9 mt-1">
+                    <input
+                      type="text"
+                      style="padding: 20px 5px"
+                      class="form-control"
+                      placeholder="Ex: Extração"
+                      id="categoria"
+                      name="categoria"
+                      [(ngModel)]="detalhe.categoria"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group row" style="margin-top: -20px">
+                  <label
+                    style="margin-top: -20px"
+                    for="controle"
+                    class="mt-1 col-sm-4 col-form-label"
+                    >CONTROLE ADMIN:</label
+                  >
+                  <div class="col-sm-8 mt-1">
+                    <input
+                      style="padding: 20px 5px"
+                      class="form-control"
+                      type="text"
+                      placeholder="Ex: Dent-ubs-extração"
+                      id="controle"
+                      name="controle"
+                      [(ngModel)]="detalhe.controle"
+                    />
+                  </div>
+                </div>
+
+                <div style="margin-bottom: -20px; float: right">
+                  <button
+                    type="reset"
+                    style="margin: 2px; padding: 3px"
+                    class="btn btn-warning btn-add-car"
+                    (click)="atualizarDetalhe()"
+                  >
+                    Editar|Ativos
+                  </button>
+                  <button
+                    type="reset"
+                    style="margin: 2px; padding: 3px"
+                    class="btn btn-secondary btn-add-car"
+                    (click)="limpaDetalhe()"
+                  >
+                    Limpar
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-add-car"
+                    style="margin: 2px 2px 3px; padding: 3px"
+                  >
+                    Salvar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="style-modal">
+            <div class="divContainer">
+              <div
+                class="conteudoModal"
+                style="height: 250px; overflow-y: scroll; margin-bottom: 2px"
+              >
+                <table class="table">
+                  <thead>
+                    <tr
+                      style="
+                        position: sticky;
+                        top: -2px;
+                        background-color: #ffff;
+                      "
+                    >
+                      <th scope="col">#</th>
+                      <th scope="col">Detalhes</th>
+                      <th scope="col">UBS</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <span
+                    *ngIf="datas$.length > 0"
+                    style="font-size: 1rem; color: blue"
+                    >Existe datas a lançar...</span
+                  >
+                  <tbody>
+                    <tr *ngFor="let detalhe of detalhe$; index as i">
+                      <td scope="row">{{ i + 1 }}</td>
+                      <td>{{ detalhe.detalhe }}</td>
+                      <td>{{ detalhe.controle }}</td>
+                      <td>
+                        <div class="s-c">
+                          <a class="s-b" (click)="editDetalhe(detalhe)"
+                            >Editar</a
+                          >
+                          <a class="s-b" (click)="deleteDetalhe(detalhe)"
+                            >Deletar</a
+                          >
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal PROCEDIMENTO-->
+<div
+  class="modal fade"
+  style="position: absolute; margin: 2% 3%"
+  id="procedimento"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document" style="margin: 20px auto">
+    <div class="modal-content" style="margin: 0 auto; padding: 5px">
+      <div class="modal-header">
+        <h5 style="color: red" class="modal-title" id="procedimento">
+          <span class="passo">PASSO 4</span> - LANÇAR PROCEDIMENTO
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true" style="font-size: 2.5rem; color: red"
+            >&times;</span
+          >
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="card" style="width: 100%">
+            <div class="card-body" style="padding: 24px 8px">
+              <form
+                (ngSubmit)="formm5.form.valid && saveProcedimento(formm5)"
+                #formm5="ngForm"
+                novalidate
+              >
+                <div class="form-group row" style="margin-top: -10px">
+                  <div class="col-sm-12" style="display: flex">
+                    <label for="ubs" style="width: 25%; margin-top: 10px"
+                      >UBS:
+                    </label>
+
+                    <div style="width: 75%">
+                      <select
+                        class="form-control"
+                        id="ubs"
+                        name="ubs"
+                        [(ngModel)]="proc.ubs"
+                      >
+                        <option selected value="">Secione uma opção</option>
+                        <option [value]="proc._id" *ngFor="let proc of ubs$">
+                          {{ proc.ubs }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row" style="margin-top: -10px">
+                  <div class="col-sm-12" style="display: flex">
+                    <label for="atividade" style="width: 40%; margin-top: 10px"
+                      >PROCEDIMENTO:
+                    </label>
+
+                    <div style="width: 60%">
+                      <select
+                        class="form-control"
+                        id="atividade"
+                        name="atividade"
+                        [(ngModel)]="proc.atividade"
+                      >
+                        <option selected value="">Uma opção...</option>
+                        <option [value]="proc._id" *ngFor="let proc of ativ$">
+                          {{ proc.atividade }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="margin-bottom: -20px; float: right">
+                  <button
+                    type="reset"
+                    style="margin: 2px; padding: 3px"
+                    class="btn btn-warning btn-add-car"
+                    (click)="atualizarProc()"
+                  >
+                    Ativos
+                  </button>
+                  <button
+                    type="reset"
+                    style="margin: 2px; padding: 3px"
+                    class="btn btn-secondary btn-add-car"
+                    (click)="limparProc()"
+                  >
+                    Limpar
+                  </button>
+
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-add-car"
+                    style="margin: 2px 2px 3px; padding: 3px"
+                  >
+                    Salvar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="style-modal">
+            <div class="divContainer">
+              <div
+                class="conteudoModal"
+                style="height: 250px; overflow-y: scroll; margin-bottom: 5px"
+              >
+                <table class="table">
+                  <thead>
+                    <span
+                      style="font-size: 1rem; color: blue"
+                      *ngIf="detalhe$.length > 0"
+                      >Existe procedimentos a lançar...</span
+                    >
+                    <tr
+                      style="
+                        position: sticky;
+                        top: -2px;
+                        background-color: #ffff;
+                      "
+                    >
+                      <th scope="col">#</th>
+                      <th scope="col">UBS</th>
+                      <th scope="col">CONTROLE</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let obj of proc$; index as i">
+                    <tr>
+                      <td scope="row">
+                        {{ i + 1 }}
+                      </td>
+                      <td>{{ obj?.ubs?.ubs }}</td>
+                      <td>{{ obj?.atividade?.atividade }}</td>
+                      <td>
+                        <div class="s-c">
+                          <a class="s-b" (click)="editProc(obj)">Editar</a>
+                          <a class="s-b" (click)="deleteProc(obj)">Deletar</a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal PASSOS-->
+<div
+  class="modal fade"
+  style="position: absolute; margin: 2% 3%"
+  id="passos"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document" style="margin: 20px auto">
+    <div class="modal-content" style="margin: 0 auto; padding: 0 5px">
+      <div class="modal-header">
+        <!--h5 style="color: red" class="modal-title" id="passos">
+          PASSO A PASSO
+        </h5-->
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true" style="font-size: 2.5rem; color: red"
+            >&times;</span
+          >
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: justify">
+          <div class="card" style="width: 100%">
+            <div class="card-body" style="padding: 0 8px">
+              <h5>Passo a passo</h5>
+
+              <p>
+                O sistema possui alguns botões para inserção de dados gerais
+                como: <b>ADICIONAR UBS e ADICIONAR PROCEDIMENTOS</b>. Dados
+                esses que serão usados na parte final, ou seja, no lançamento de
+                fato dos dados no sistema através do botão:
+                <b>CONCLUIR PROCEDIMENTO</b>.
+              </p>
+              <div>
+                <p>O sistema ainda possui mais três botões:</p>
+                <p class="st"><b>I- CADASTRAR HORÁRIOS</b></p>
+                <p class="st"><b>II- CADASTRAR DATAS</b></p>
+                <p class="st"><b>III- ESPECIFICAR PROCEDIMENTO</b></p>
+              </div>
+              <div>
+                <p>
+                  O I, II e III sempre irão trabalhar juntos quer seja na
+                  inserção de novos procedimentos ou na atualização de dados já
+                  existentes. Ou seja, quando já estivermos um procedimento já
+                  lançado com suas respectivas datas e horários poderemos
+                  editá-lo na forma de inserir novas datas e horários e estar
+                  agregando aos já existentes.
+                </p>
+              </div>
+
+              <div>
+                <p>
+                  Já no lançamento de novos procedimentos iremos utilizar os
+                  botões I, II e III e concluir o cadastro utilizando o
+                  <b>CONCLUIR PROCEDIMENTO</b>, sendo esse o que de fato irá
+                  disponibilizar os dados ao usuário. Sendo que na atualização
+                  de dados já existentes esse 4º botão pode ou não ser
+                  utilizado.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

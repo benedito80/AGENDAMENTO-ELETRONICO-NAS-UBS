@@ -1,0 +1,13 @@
+{
+    "development": {
+        "PORT": 3002,
+        "IP_public_PORT": "http://localhost:3002",
+        "MONGODB_URI": "mongodb://localhost:27017/db_dio",
+        "JWT_EXP": "1d"
+    },
+    "production": {
+        "PORT": 80,
+        "MONGODB_URI": "mongodb://xxxxx/DB_Name",
+        "JWT_EXP": "10m"
+    }
+}

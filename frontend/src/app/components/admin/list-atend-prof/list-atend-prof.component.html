@@ -1,0 +1,258 @@
+<div class="blo_container">
+  <div class="blo_box">
+    <div class="s-div">
+      <div>
+        <h5 style="color: #e25f79; font-weight: bold; margin-bottom: 0">
+          ATENDIMENTOS PENDENTES
+        </h5>
+      </div>
+      <div class="div-interna">
+        <input
+          type="text"
+          name="ubs"
+          [(ngModel)]="paramsUbs$"
+          class="s-input"
+          placeholder="UBS..."
+        />
+        <input
+          type="text"
+          name="detalhe"
+          [(ngModel)]="paramsDetalhe$"
+          class="s-input"
+          placeholder="Procedimento..."
+        />
+        <button class="btn btn-secundary sb" (click)="muda_UbsDetalhe()">
+          Buscar
+        </button>
+      </div>
+    </div>
+
+    <table class="table table-hover">
+      <thead style="background-color: #e25f79; color: white">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Dados do Usuário</th>
+          <th></th>
+          <th scope="col">Endereço</th>
+          <th scope="col">Dados do Procedimento</th>
+        </tr>
+      </thead>
+      <div class="mt-4 ml-2" *ngIf="info">
+        <h5>Nenhum resultado encontrado...</h5>
+      </div>
+      <tbody
+        *ngFor="
+          let car of usuarios
+            | paginate: { itemsPerPage: count, currentPage: p };
+          index as i
+        "
+      >
+        <tr style="font-size: 0.8rem">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            <span class="style-list">NOME: </span>
+            {{ car.nome }}<br />
+            <span class="style-list">D.Nasc: </span> {{ car.data_nasc }}<br />
+            <span class="style-list">SEXO: </span>{{ car.sexo }}
+            <span class="style-list ml-3">IDADE: </span> {{ car.idade }}<br />
+            <span class="style-list">CEL: </span> {{ car.n_celular }}<br />
+          </td>
+          <td>
+            <span class="style-list">CNS: </span> {{ car.cns }}<br />
+            <span class="style-list">CPF: </span> {{ car.cpf }}<br />
+            <span class="style-list">RG: </span> {{ car.rg }} <br />
+          </td>
+          <td>
+            <span class="style-list">LOGRADOURO: </span>
+            {{ car.logradouro }}; {{ car.numero }}<br />
+            <span class="style-list">BAIRRO: </span>
+            {{ car.bairro }}.
+            <span class="style-list ml-1">CIDADE: </span>
+            {{ car.cidade }}-{{ car.uf }}<br />
+            <span class="style-list">CEP: </span>
+            {{ car.cep }}<br />
+          </td>
+
+          <td>
+            <span class="style-list"> PROCED: </span>
+            {{ car.detalhe }} as {{ car.horas }}hr<br />
+            <span class="style-list">UBS: </span>{{ car.ubs }}
+            <span class="style-list ml-3">DATA: </span>
+            {{ car.dia | date: "dd/MM/yyyy" }}<br />
+
+            <span class="style-list">GRU: </span> {{ car.prioridade }}
+            <span class="style-list ml-3">CAT: </span> {{ car.categoria }}
+
+            <button
+              *ngIf="mostrarProf()"
+              style="
+                float: right;
+                margin-top: 3px;
+                padding: 2px 5px;
+                background-color: #a8c38a;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+              "
+              (click)="atender(car)"
+            >
+              ATENDER
+            </button>
+
+            <button
+              *ngIf="mostrarSup()"
+              style="
+                float: right;
+                margin-top: 3px;
+                padding: 2px 5px;
+                background-color: #a8c38a;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+              "
+              (click)="desvalidar(car)"
+            >
+              DESVALIDAR
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Button modal -->
+    <button
+      type="button"
+      class="btn btn-outline-secondary mt-4"
+      data-toggle="modal"
+      data-target="#exampleModal"
+      (click)="press()"
+      *ngIf="mostrarRelat"
+    >
+      GERAR RELATÓRIO
+    </button>
+    <div>
+      <p
+        *ngIf="!mostrarRelat"
+        style="
+          margin-top: 45px;
+          margin-left: 50px;
+          max-width: 300px;
+          color: #e25f79;
+          font-size: 1rem;
+        "
+      >
+        * Atenção, para gerar relatório informe UBS e precedimento acima...
+      </p>
+    </div>
+
+    <div class="text-right">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div style="background-color: white" class="modal fade" id="exampleModal">
+  <div class="modal-dialog" role="document">
+    <button
+      *ngIf="mostra"
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div style="margin-top: 5%; max-width: 95%; margin: 0 auto">
+    <h6 style="text-align: center" class="mb-0">LISTA DE USUÁRIOS AGENDADOS</h6>
+    <p
+      *ngIf="paramsUbs$ && paramsDetalhe$"
+      class="mt-0"
+      style="text-align: center; font-size: 1rem"
+    >
+      {{ paramsUbs$ }} - ({{ paramsDetalhe$ }})
+    </p>
+    <table class="table table-hover mt-4" style="font-size: 0.8rem">
+      <thead>
+        <tr>
+          <th
+            scope="col"
+            (click)="press()"
+            style="cursor: pointer; font-size: 1rem"
+          >
+            #
+          </th>
+          <th scope="col">Dados do Usuário</th>
+          <th></th>
+          <th scope="col">Endereço</th>
+          <th scope="col">Dados do Procedimento</th>
+        </tr>
+      </thead>
+      <div class="mt-4 ml-2" *ngIf="info">
+        <h5>Nenhum resultado encontrado...</h5>
+      </div>
+      <tbody
+        *ngFor="
+          let car of usuarios
+            | paginate: { itemsPerPage: count, currentPage: p };
+          index as i
+        "
+      >
+        <tr>
+          <th scope="row" style="vertical-align: middle">{{ i + 1 }}</th>
+          <td>
+            <span class="style-list">NOME: </span>
+            {{ car.nome }}<br />
+            <span class="style-list">D.Nasc: </span> {{ car.data_nasc }}<br />
+            <span class="style-list">SEXO: </span>{{ car.sexo }}
+            <span class="style-list ml-3">IDADE: </span> {{ car.idade }}<br />
+          </td>
+          <td>
+            <span class="style-list">CNS: </span> {{ car.cns }}<br />
+            <span class="style-list">CPF: </span> {{ car.cpf }}<br />
+            <span class="style-list">CEL: </span> {{ car.n_celular }}<br />
+          </td>
+          <td>
+            <span class="style-list">END: </span>
+            {{ car.logradouro }}; {{ car.numero }}<br />
+            <span class="style-list">BAIRRO: </span>
+            {{ car.bairro }}<br />
+            <span class="style-list">CIDADE: </span>
+            {{ car.cidade }}-{{ car.uf }}<br />
+          </td>
+
+          <td>
+            <span class="style-list"> PROCED: </span>
+            {{ car.detalhe }} as {{ car.horas }}hr<br />
+            <span class="style-list">UBS: </span>{{ car.ubs }}
+            <span class="style-list ml-3">DATA: </span>
+            {{ car.dia | date: "dd/MM/yyyy" }}<br />
+
+            <span class="style-list">GRU: </span> {{ car.prioridade }}
+            <span class="style-list ml-3">CAT: </span> {{ car.categoria }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="font-size: 1rem" class="text-right mb-4">
+      Oeiras, {{ data | date: "dd/MM/yyyy 'as' hh:mm" }}
+    </div>
+
+    <div class="text-right" *ngIf="mostraDiv">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+    <div *ngIf="mostraDiv" class="mb-5">
+      <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+        VOLTAR
+      </button>
+    </div>
+  </div>
+  <div>
+    <!--button type="button" class="btn btn-primary">Save changes</button-->
+  </div>
+</div>

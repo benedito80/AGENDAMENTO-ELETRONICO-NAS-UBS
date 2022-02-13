@@ -1,0 +1,70 @@
+.container2 {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(126, 126, 247);
+}
+
+.passo {
+  color: blue;
+}
+
+.st {
+  margin-top: -15px;
+  margin-left: 10px;
+}
+
+.box {
+  width: 300px;
+  height: 200px;
+  background-color: rgb(126, 126, 247);
+}
+
+.d {
+  margin-top: -170px;
+  padding: 0px;
+}
+
+.s-c {
+  color: red;
+}
+
+.s-b {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.blo_container2 {
+  width: 100%;
+  margin: 0;
+}
+
+.blo_box {
+  width: 100%;
+  padding: 2% 10% 0;
+}
+
+.style-h5 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  background-color: #e25f79;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .blo_box {
+    padding: 8% 3% 8%;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .d {
+      margin-top: -200px;
+      padding: 0px;
+    }
+  }
+}

@@ -1,0 +1,633 @@
+<div class="blo_container">
+  <form
+    class="blo_box"
+    id="add-form"
+    (ngSubmit)="f.form.valid && save(f)"
+    #f="ngForm"
+    novalidate
+  >
+    <h5 class="style-title">DADOS PESSOAIS</h5>
+    <hr class="mt-0" style="border: 1px solid #e25f79" />
+
+    <div class="form-row">
+      <div class="col-md-6 mb-1">
+        <label for="nome">Nome Completo</label>
+        <input
+          type="text"
+          class="form-control is-valid"
+          id="nome"
+          name="nome"
+          [(ngModel)]="usuario.nome"
+          #nome="ngModel"
+          required
+          [ngClass]="{
+            'is-invalid': f.submitted && nome.invalid
+          }"
+        />
+
+        <div *ngIf="f.submitted && nome.invalid" class="invalid-feedback mf">
+          <div>Campo obrigatório</div>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-1">
+        <div style="display: flex">
+          <div style="width: 60%; margin-right: 2px">
+            <label for="n_celular">Nº Celular</label>
+            <input
+              class="form-control is-valid"
+              id="n_celular"
+              [textMask]="{ mask: celMask }"
+              name="n_celular"
+              [(ngModel)]="usuario.n_celular"
+              placeholder="Apenas números"
+              #n_celular="ngModel"
+              required
+              [ngClass]="{
+                'is-invalid': f.submitted && n_celular.invalid
+              }"
+            />
+            <div
+              *ngIf="f.submitted && n_celular.invalid"
+              class="invalid-feedback mf"
+            >
+              <div>Campo obrigatório</div>
+            </div>
+          </div>
+          <div style="width: 40%">
+            <label for="data_nasc">Data.Nasc</label>
+            <input
+              [textMask]="{ mask: dtNascMask }"
+              class="form-control is-valid"
+              id="data_nasc"
+              name="data_nasc"
+              [(ngModel)]="usuario.data_nasc"
+              #data_nasc="ngModel"
+              required
+              [ngClass]="{
+                'is-invalid': f.submitted && data_nasc.invalid
+              }"
+            />
+            <div
+              *ngIf="f.submitted && data_nasc.invalid"
+              class="invalid-feedback mf"
+            >
+              <div>Campo obrigatório</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-7 mb-1">
+        <div style="display: flex">
+          <div style="width: 56%; margin-right: 2px">
+            <label for="cns">CNS</label>
+            <div class="input-group">
+              <input
+                [textMask]="{ mask: cnsMask }"
+                class="form-control"
+                id="cns"
+                name="cns"
+                [(ngModel)]="usuario.cns"
+                placeholder="Apenas números"
+              />
+            </div>
+          </div>
+          <div style="width: 44%">
+            <label for="cpf">CPF</label>
+            <input
+              class="form-control is-valid"
+              id="cpf"
+              [textMask]="{ mask: cpfMask }"
+              name="cpf"
+              [(ngModel)]="usuario.cpf"
+              #cpf="ngModel"
+              placeholder="Apenas números"
+              required
+              [ngClass]="{
+                'is-invalid': f.submitted && cpf.invalid
+              }"
+            />
+            <div *ngIf="f.submitted && cpf.invalid" class="invalid-feedback mf">
+              <div>Campo obrigatório</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5 mb-1">
+        <div style="display: flex">
+          <div style="width: 60%; margin-right: 2px">
+            <label for="rg">RG</label>
+            <input
+              type=""
+              class="form-control"
+              id="rg"
+              name="rg"
+              maxlength="20"
+              [(ngModel)]="usuario.rg"
+              placeholder="Apenas números"
+            />
+          </div>
+          <div style="width: 40%">
+            <label for="sexo">Sexo</label>
+            <select
+              class="form-control"
+              aria-label="Default select example"
+              name="sexo"
+              id="sexo"
+              [(ngModel)]="usuario.sexo"
+              #sexo="ngModel"
+              required
+              [ngClass]="{
+                'is-invalid': f.submitted && sexo.invalid
+              }"
+            >
+              <option value="M">Masculino</option>
+              <option value="F">Feminino</option>
+              <option value="Outros">Outros</option>
+            </select>
+            <div
+              *ngIf="f.submitted && sexo.invalid"
+              class="invalid-feedback"
+              style="font-size: 0.8rem"
+            >
+              <div>Campo obrigatório</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="style-h5">
+      <h5 class="mb-0">ENDEREÇO</h5>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-6 mb-1">
+        <label for="logradouro">Logradouro ( Rua, avenida, etc. )</label>
+        <input
+          type="text"
+          class="form-control is-valid"
+          id="logradouro"
+          name="logradouro"
+          [(ngModel)]="usuario.logradouro"
+        />
+      </div>
+
+      <div class="col-md-2 mb-1">
+        <label for="numero">Numero</label>
+        <input
+          type="number"
+          class="form-control is-valid"
+          id="numero"
+          name="numero"
+          [(ngModel)]="usuario.numero"
+        />
+      </div>
+
+      <div class="col-md-4 mb-1">
+        <label for="bairro">Bairro</label>
+        <input
+          type="text"
+          class="form-control is-valid"
+          id="bairro"
+          name="bairro"
+          [(ngModel)]="usuario.bairro"
+          #bairro="ngModel"
+          required
+          [ngClass]="{
+            'is-invalid': f.submitted && bairro.invalid
+          }"
+        />
+        <div *ngIf="f.submitted && bairro.invalid" class="invalid-feedback mf">
+          <div>Campo obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-6 mb-1">
+        <label for="cidade">Cidade</label>
+        <input
+          type="text"
+          class="form-control is-valid"
+          id="cidade"
+          name="cidade"
+          [(ngModel)]="usuario.cidade"
+          #cidade="ngModel"
+          required
+          [ngClass]="{
+            'is-invalid': f.submitted && cidade.invalid
+          }"
+        />
+        <div *ngIf="f.submitted && cidade.invalid" class="invalid-feedback mf">
+          <div>Campo obrigatório</div>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-1">
+        <div style="display: flex">
+          <div style="width: 70%; margin-right: 2px">
+            <label for="cep">CEP</label>
+            <input
+              class="form-control is-valid"
+              id="cep"
+              [textMask]="{ mask: cepMask }"
+              name="cep"
+              [(ngModel)]="usuario.cep"
+            />
+          </div>
+          <div style="width: 30%">
+            <label for="uf">UF</label>
+            <input
+              style="text-transform: uppercase"
+              type="text"
+              class="form-control is-valid style-maius"
+              id="uf"
+              name="uf"
+              maxlength="2"
+              [(ngModel)]="usuario.uf"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--div class="style-h5">
+      <h5 class="mb-0">
+        AGENDAR VACINA - {{ ubs_param$ }} * {{ trocaUbs_param }} *
+        {{ ativ_param$ }}
+      </h5>
+    </div-->
+    <div class="style-h5">
+      <h5 class="mb-0">AGENDAR PROCEDIMENTO</h5>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-6 mb-1">
+        <label class="mt-2" for="ubs">UBS </label>
+        <select
+          class="form-control"
+          id="ubs"
+          name="ubs"
+          [(ngModel)]="ubs._id"
+          (change)="mudaPosto(ubs._id)"
+        >
+          <option selected value="">Selecione uma opção</option>
+
+          <option [value]="ubs._id" *ngFor="let ubs of ubs$">
+            {{ ubs.ubs }}
+          </option>
+        </select>
+        <div *ngIf="verificaInputUbs()">
+          <div class="mf" class="m-campo">Campo obrigatório</div>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-1" *ngIf="mostraAtiv">
+        <label for="ativ" class="mt-2">TIPO DE ATENDIMENTO</label>
+        <select
+          class="form-control"
+          id="ativ"
+          name="ativ"
+          [(ngModel)]="ativ._id"
+          (change)="mudaProcedimento(ativ._id)"
+        >
+          <option selected value="">Selecione uma opção</option>
+
+          <option [value]="ativ._id" *ngFor="let ativ of ativ$">
+            {{ ativ.atividade }}
+          </option>
+        </select>
+        <div *ngIf="verificaInputAtiv()">
+          <div class="mf" class="m-campo">Campo obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <!--div class="col-md-3 mb-1">
+        <label for="vacina">Procedimento </label>
+        <select
+          class="form-local_aplicacao form-control"
+          aria-label="Default select example"
+          id="vacina"
+          name="vacina"
+          [(ngModel)]="obj._id"
+          (change)="trocaUbsVacina(obj._id)"
+        >
+          <option selected value="">Selecione uma opção</option>
+          <option [value]="obj._id" *ngFor="let obj of vacina">
+            {{ obj.procedimento }}
+          </option>
+        </select>
+      </div-->
+
+      <!--div class="col-md-3 mb-2" *ngFor="let b of ubsProcedimento$">
+        <label for="dia">Data </label>
+        <select
+          class="form-control"
+          (change)="mudaData(obj.dia)"
+          id="dia"
+          name="dia"
+          [(ngModel)]="obj.dia"
+          #dia="ngModel"
+          required
+          [ngClass]="{
+            'is-invalid': f.submitted && dia.invalid
+          }"
+        >
+          <option selected value="">Selecione uma opção</option>
+          <option *ngFor="let obj of b.data">
+            {{ obj.dia }}
+          </option>
+        </select>
+        <div *ngIf="f.submitted && dia.invalid" class="invalid-feedback mf">
+          Campo obrigatório
+        </div>
+      </div-->
+
+      <!--div class="col-md-3 mb-2" *ngFor="let b of ubsProcedimento$">
+        <label for="prioridade">Prioridade </label>
+        <select
+          class="form-control"
+          (change)="mudaPrioridade(obj.prioridade)"
+          id="prioridade"
+          name="prioridade"
+          [(ngModel)]="obj.prioridade"
+          #prioridade="ngModel"
+          required
+          [ngClass]="{
+            'is-invalid': f.submitted && prioridade.invalid
+          }"
+        >
+          <option selected value="">Selecione uma opção</option>
+          <option *ngFor="let obj of b.data">
+            {{ obj.prioridade }}
+          </option>
+        </select>
+        <div
+          *ngIf="f.submitted && prioridade.invalid"
+          class="invalid-feedback mf"
+        >
+          Campo obrigatório
+        </div>
+      </div-->
+    </div>
+
+    <div *ngIf="mostraResProc">
+      <div class="mt-4">
+        <!--h5 class="style-title">DISPONÍVEIS - {{ detalhe_param$ }}</h5-->
+        <h5 class="style-title">DISPONÍVEIS</h5>
+        <hr class="mt-0" style="border: 1px solid #e25f79" />
+
+        <div
+          class="form-check form-check-inline style-block"
+          *ngFor="let b of proc$"
+        >
+          <div *ngFor="let proc of b.detalhe">
+            <input
+              class="form-check-input style-radio"
+              type="radio"
+              (change)="mudaDetalhe(proc._id)"
+              (change)="pegaCatPrior(proc)"
+              name="proc"
+            />
+            <label
+              class="form-check-label mr-4"
+              style="font-size: 1.2rem"
+              for="proc"
+              >{{ proc.detalhe }}</label
+            >
+            <p
+              style="
+                font-size: 0.7rem;
+                margin-left: 5px;
+                color: rgb(174, 101, 177);
+              "
+            >
+              {{ proc.prioridade }} <br />
+              {{ proc.categoria }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="verificaInputDetalhe()">
+        <div
+          class="mf"
+          style="color: #cf3c5a; margin-top: 0; margin-left: 15px"
+        >
+          Campo obrigatório
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row mt-2" *ngIf="mostraData">
+      <div class="col-md-6">
+        <!--label class="style-title mb-2" for="objData"
+          >DATAS - {{ dia_param$ }}
+        </label-->
+        <label class="style-title mb-2" for="objData">DATAS </label>
+
+        <select
+          class="form-control"
+          id="objData"
+          name="objData"
+          [(ngModel)]="objData._id"
+          (change)="mudaData(objData._id)"
+        >
+          <option selected value="">Verif. se opções disponíveis</option>
+          <option
+            [value]="objData._id"
+            *ngFor="let objData of dataDeDetalheById$"
+          >
+            {{ objData.dia | date: "dd/MM/yyyy" }}
+          </option>
+        </select>
+        <div *ngIf="verificaInputData()">
+          <div class="mf" class="m-campo">Campo obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row" *ngIf="mostraHrDisp">
+      <div class="col-md-12 mb-4 mt-4">
+        <!--label
+          for="horas"
+          style="color: #e25f79; font-weight: bold; font-size: 1.3rem"
+          >HORÁRIOS DISPONÍVEIS - {{ hr_param$ }}
+        </label-->
+        <label
+          for="horas"
+          style="color: #e25f79; font-weight: bold; font-size: 1.3rem"
+          >HORÁRIOS DISPONÍVEIS
+        </label>
+        <hr class="mt-0" style="border: 1px solid #e25f79" />
+
+        <div style="background-color: #f1f1f1; border-radius: 5px">
+          <div
+            class="form-check form-check-inline"
+            style="padding: 1%"
+            *ngFor="let horas of resGetDataByIdHoras$" 
+          >
+            <input
+              class="form-check-input style-radio"
+              type="radio"
+              name="horas"
+              id="horas"
+              (click)="mapeadaHorasDelete(horas)"
+            />
+            <label
+              class="form-check-label"
+              style="font-size: 1.2rem; padding: 4px"
+              for="hr"
+              >{{ horas.hr }}</label
+            >
+          </div>
+
+          <div *ngIf="verificaInputHoras()">
+            <div class="mf m-campo">Campo obrigatório</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--div class="form-row" *ngFor="let b of porHoras$">
+      <div class="col-md-12 mb-4 mt-4">
+        <label
+          for="hr"
+          style="color: #e25f79; font-weight: bold; font-size: 1.3rem"
+          >HORÁRIOS DISPONÍVEIS</label
+        >
+        <hr class="mt-0" style="border: 1px solid #e25f79" />
+
+        <div style="background-color: #f1f1f1; border-radius: 5px">
+          <div
+            class="form-check form-check-inline"
+            *ngFor="let obj of b"
+            style="padding: 1%"
+          >
+            <input
+              class="form-check-input style-radio"
+              type="radio"
+              id="hr"
+              name="hr"
+              (change)="pegaHoraId(obj._id)"
+              (change)="pegaHoraHr(obj.hr)"
+              required
+            />
+            <label
+              class="form-check-label"
+              style="font-size: 1.2rem; padding: 4px"
+              for="hr"
+              >{{ obj.hr }}</label
+            >
+          </div>
+        </div>
+      </div>
+    </div-->
+
+    <!--div class="form-row" *ngIf="printOutros">
+      <div class="col-md-6 mb-1">
+        <label for="prioridade">Grupo Prioritário </label>
+        <select
+          class="form-control"
+          id="prioridade"
+          name="prioridade"
+          [(ngModel)]="obj.prioridade"
+          #prioridade="ngModel"
+          required
+          [ngClass]="{
+            'is-invalid': f.submitted && prioridade.invalid
+          }"
+        >
+          <option selected [value]="">Selecione uma opção</option>
+          <option *ngFor="let obj of porData$">
+            {{ obj.prioridade }}
+          </option>
+        </select>
+        <div
+          *ngIf="f.submitted && prioridade.invalid"
+          class="invalid-feedback mf"
+        >
+          Campo obrigatório
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-1" *ngIf="printOutros">
+        <label for="categoria">Categoria do Grupo </label>
+        <select
+          class="form-control"
+          id="categoria"
+          name="categoria"
+          [(ngModel)]="obj.categoria"
+          #categoria="ngModel"
+          required
+          [ngClass]="{
+            'is-invalid': f.submitted && categoria.invalid
+          }"
+        >
+          <option selected [value]="">Selecione uma opção</option>
+          <option *ngFor="let obj of porData$">
+            {{ obj.categoria }}
+          </option>
+        </select>
+        <div
+          *ngIf="f.submitted && categoria.invalid"
+          class="invalid-feedback mf"
+        >
+          Campo obrigatório
+        </div>
+      </div>
+    </div-->
+
+    <div class="form-group mt-3 mb-3">
+      <div class="form-check">
+        <input
+          style="width: 20px; height: 20px"
+          class="form-check-input is-invalid"
+          type="checkbox"
+          id="termos"
+          name="termos"
+          [(ngModel)]="usuario.termos"
+          value="true"
+          #termos="ngModel"
+          required
+          [ngClass]="{
+            'is-invalid': f.submitted && termos.invalid
+          }"
+        />
+        <label
+          class="mt-1 form-check-label"
+          for="termos"
+          style="font-size: 1rem; color: black; margin-left: 10px"
+        >
+          Declaro que as informações são verdadeiras
+        </label>
+        <div
+          *ngIf="f.submitted && termos.invalid"
+          class="invalid-feedback mf"
+          style="color: #cf3c5a"
+        >
+          Campo obrigatório
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-2 mb-5" style="width: 100%">
+      <button (click)="dadosFormObrig(f)" type="submit" class="btn btn-primary">
+        Salvar
+      </button>
+      <button
+        class="btn ml-2"
+        [routerLink]="['']"
+        style="background-color: #c0b8ba; color: white"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

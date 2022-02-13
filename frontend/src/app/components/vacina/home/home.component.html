@@ -1,0 +1,100 @@
+<div class="content" role="main" style="margin-top: 10px">
+  <!-- Highlight Card -->
+  <div class="">
+    <div style="display: block; margin: 0 auto">
+      <div style="display: block; text-align: center">
+        <img src="../../../../assets/oeiras.png" />
+        <p
+          style="font-size: 1.4rem; font-weight: bold; color: rgb(78, 157, 221)"
+        >
+          Prefeitura Municipal
+        </p>
+        <p
+          style="
+            margin-top: -5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: rgb(78, 157, 221);
+          "
+        >
+          Minha Cidade
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resources -->
+  <h3 class="mt-3">Agendamento Eletrônico</h3>
+  <p style="font-size: 1rem; text-align: center; padding: 5px 10px">
+    O sistema é destinado ao agendamento de vacinas e outros procedimentos
+    dentro da Rede Municipal de Saúde.
+  </p>
+
+  <div
+    style="
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      text-align: center;
+      justify-content: center;
+    "
+  >
+    <div
+      style="
+        margin: 10px 5px;
+        background-color: rgb(78, 157, 221);
+        padding: 8px 20px;
+        border-radius: 15px;
+      "
+    >
+      <a
+        style="padding: 8px 22px; color: white; font-weight: bold"
+        [routerLink]="['/formulario']"
+      >
+        <span>Realizar agendamentos</span>
+      </a>
+    </div>
+
+    <div
+      style="
+        margin: 10px 5px;
+        background-color: rgb(78, 157, 221);
+        padding: 8px 20px;
+        border-radius: 15px;
+      "
+    >
+      <a
+        style="padding: 8px; color: white; font-weight: bold"
+        [routerLink]="['/agendamentos']"
+      >
+        <span>Buscar meus agendamentos</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Next Steps -->
+  <h4>Outras Informações</h4>
+  <p style="margin-bottom: 0">Contato: (89) 98826-9454</p>
+
+  <div class="card-container sw">
+    <div class="s-w">
+      <div class="style-div">
+        <a style="padding: 8px 100px; cursor: pointer" (click)="logar()">
+          Área Restrita
+        </a>
+      </div>
+      <div class="style-div">
+        <a style="padding: 8px 73px; cursor: pointer">Notícias</a>
+      </div>
+      <div class="style-div">
+        <a style="padding: 8px 90px; cursor: pointer">Sobre</a>
+      </div>
+    </div>
+  </div>
+<div style="display:flex;gap: 5px;font-size: 16px; align-items: center;">
+  <span style="color:blue; font-size:25px">&#169;</span>
+  <strong>2022 - Benedito Batista</strong>
+</div>
+<span style="font-size:12px">Todos os direitos reservados</span>
+  
+</div>

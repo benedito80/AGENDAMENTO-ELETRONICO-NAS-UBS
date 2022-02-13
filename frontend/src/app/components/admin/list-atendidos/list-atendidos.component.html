@@ -1,0 +1,104 @@
+<div class="blo_container">
+  <div class="blo_box">
+    <div class="s-div">
+      <div>
+        <h5 style="color: #e25f79; font-weight: bold">
+          USUÁRIOS ATENDIDOS NA UBS
+        </h5>
+      </div>
+
+      <div class="div-interna">
+        <input
+          [textMask]="{ mask: cpfMask }"
+          [(ngModel)]="paramsCpf$"
+          class="s-input"
+          placeholder="CPF..."
+        />
+        <button class="btn btn-secundary sb" (click)="muda_Cpf()">
+          Buscar
+        </button>
+      </div>
+    </div>
+
+    <table class="table table-hover">
+      <thead style="background-color: #e25f79; color: white">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Dados do Usuário</th>
+          <th></th>
+          <th scope="col">Endereço</th>
+          <th scope="col">Dados Vacina</th>
+        </tr>
+      </thead>
+      <div class="mt-4 ml-2" *ngIf="info">
+        <h5>Nenhum resultado encontrado...</h5>
+      </div>
+      <tbody
+        *ngFor="
+          let car of usuarios
+            | paginate: { itemsPerPage: count, currentPage: p };
+          index as i
+        "
+      >
+        <tr style="font-size: 0.8rem">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            <span class="style-list">NOME: </span>
+            {{ car.nome }}<br />
+            <span class="style-list">D.Nasc: </span> {{ car.data_nasc }}<br />
+            <span class="style-list">SEXO: </span>{{ car.sexo }}
+            <span class="style-list ml-3">IDADE: </span> {{ car.idade }}<br />
+            <span class="style-list">CEL: </span> {{ car.n_celular }}<br />
+          </td>
+          <td>
+            <span class="style-list">CNS: </span> {{ car.cns }}<br />
+            <span class="style-list">CPF: </span> {{ car.cpf }}<br />
+            <span class="style-list">RG: </span> {{ car.rg }} <br />
+          </td>
+          <td>
+            <span class="style-list">LOGRADOURO: </span>
+            {{ car.logradouro }}; {{ car.numero }}<br />
+            <span class="style-list">BAIRRO: </span>
+            {{ car.bairro }}.
+            <span class="style-list ml-1">CIDADE: </span>
+            {{ car.cidade }}-{{ car.uf }}<br />
+            <span class="style-list">CEP: </span>
+            {{ car.cep }}<br />
+          </td>
+
+          <td>
+            <span class="style-list"> PROCED: </span>
+            {{ car.detalhe }} as {{ car.horas }}hr<br />
+            <span class="style-list">UBS: </span>{{ car.ubs }}
+            <span class="style-list ml-3">DATA: </span>
+            {{ car.dia | date: "dd/MM/yyyy" }}<br />
+
+            <span class="style-list">GRU: </span> {{ car.prioridade }}
+            <span class="style-list ml-3">CAT: </span> {{ car.categoria }}
+    
+            <button
+              *ngIf="mostrarProf()"
+              style="
+                float: right;
+                margin-top: 3px;
+                padding: 2px 5px;
+                background-color: #a8c38a;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+              "
+              (click)="desfazer(car)"
+            >
+              DESFAZER
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="text-right">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

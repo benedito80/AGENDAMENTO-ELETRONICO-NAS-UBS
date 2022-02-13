@@ -1,0 +1,138 @@
+<div class="style-body">
+  <div class="container">
+    <form
+      id="add-form"
+      (ngSubmit)="f.form.valid && saveUsers(f)"
+      #f="ngForm"
+      novalidate 
+      class="form-filmes"
+      style="height: 500px"
+    >
+      <h5 class="sty-h5">Cadastrar Usuário</h5>
+      <hr class="mt-0" style="width: 99%; border: 1px solid #e25f79" />
+
+      <div class="form-row">
+        <div class="col-md-12 mb-1">
+          <label for="fullName">Nome Completo</label>
+          <input
+            type="text"
+            class="form-control is-valid"
+            id="fullName"
+            name="fullName"
+            [(ngModel)]="obj.fullName"
+            #fullName="ngModel"
+            required
+            [ngClass]="{
+              'is-invalid': f.submitted && fullName.invalid
+            }"
+          />
+
+          <div *ngIf="f.submitted && fullName.invalid" class="invalid-feedback">
+            <div *ngIf="fullName.errors?.required">O nome é obrigatório</div>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-1">
+          <label for="cpf">CPF</label>
+          <input
+            type="text"
+            class="form-control is-valid"
+            id="cpf"
+            name="cpf"
+            [textMask]="{ mask: cpfMask }"
+            [(ngModel)]="obj.cpf"
+            #cpf="ngModel"
+            required
+            [ngClass]="{
+              'is-invalid': f.submitted && cpf.invalid
+            }"
+          />
+
+          <div *ngIf="f.submitted && cpf.invalid" class="invalid-feedback mf">
+            <div>Campo obrigatório</div>
+          </div>
+        </div>
+
+        <div class="col-md-12 mb-1">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control is-valid"
+            id="email"
+            [pattern]="emailRegex"
+            name="email"
+            [(ngModel)]="obj.email"
+            #email="ngModel"
+            required
+            [ngClass]="{
+              'is-invalid': f.submitted && email.invalid
+            }"
+          />
+
+          <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+            <div *ngIf="email.errors?.required">Email é obrigatório</div>
+          </div>
+          <div
+            *ngIf="f.submitted && email.errors?.pattern"
+            class="invalid-feedback"
+          >
+            <div>Email inválido!.</div>
+          </div>
+        </div>
+        <div
+          *ngIf="f.submitted && email.errors?.pattern"
+          class="invalid-feedback"
+        >
+          <div>Email inválido!.</div>
+        </div>
+
+        <div class="col-md-6 mb-1">
+          <label for="password">Senha</label>
+          <input
+            type="password"
+            class="form-control is-valid"
+            id="password"
+            name="password"
+            minlength="8"
+            [(ngModel)]="obj.password"
+            #password="ngModel"
+            required
+            [ngClass]="{
+              'is-invalid': f.submitted && password.invalid
+            }"
+          />
+
+          <div
+            *ngIf="f.submitted && password.invalid"
+            class="invalid-feedback mf"
+          >
+            <div>Campo obrigatório</div>
+          </div>
+          <div *ngIf="f.submitted && password.errors?.minlength">
+            <div class="validation-message">
+              <p style="font-size: 12px; color: crimson; margin-left: 5px">
+                Minimo de 8 caracteres.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <button class="mr-1" type="reset" (click)="cleanForm(f)">Limpar</button>
+        <button type="submit">Salvar</button>
+      </footer>
+      <div
+        style="
+          text-align: center;
+          color: red;
+          margin-top: 10px;
+          margin-bottom: 0px;
+        "
+      >
+        <a style="cursor: pointer" (click)="meuCadastro()"
+          >Ja tenho cadastro!</a
+        >
+      </div>
+    </form>
+  </div>
+</div>

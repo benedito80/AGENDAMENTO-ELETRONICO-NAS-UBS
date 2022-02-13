@@ -1,0 +1,66 @@
+.blo_container {
+  width: 100%;
+  margin: -8px 0 20px;
+}
+
+.blo_box {
+  width: 100%;
+  padding: 1% 10%;
+}
+
+.style-block {
+  display: inline-flexbox;
+}
+
+.m-campo {
+  color: #cf3c5a;
+  margin-top: 3px;
+}
+
+.mf {
+  color: #cf3c5a;
+  font-size: 0.8rem;
+}
+
+label {
+  margin-bottom: 0;
+}
+
+.style-radio {
+  width: 22px;
+  height: 22px;
+}
+
+.style-maius {
+  text-transform: uppercase;
+}
+
+.style-h5 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background-color: #e25f79;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 5px;
+}
+.style-title {
+  font-size: 1.3rem;
+  color: #e25f79;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+  .blo_box {
+    padding: 4% 6%;
+  }
+
+  .style-block {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .style-title {
+    font-size: 1.1rem;
+  }
+}

@@ -1,0 +1,83 @@
+<div class="blo_container">
+  <div class="blo_box">
+    <div class="form-row ml-0" style="float: right; display: flex">
+      <div id="cpf" class="mr-2">
+        <input
+          [textMask]="{ mask: cpfMask }"
+          class="txtBusca"
+          placeholder="CPF..."
+          id="cpf"
+          name="cpf"
+          [(ngModel)]="cpf"
+        />
+      </div>
+
+      <div id="dt_nasc" class="mr-2">
+        <input
+          [textMask]="{ mask: dtNascMask }"
+          class="txtBusca"
+          id="dt_nasc"
+          placeholder="Data de Nascimento..."
+          name="dt_nasc"
+          [(ngModel)]="dt_nasc"
+        />
+      </div>
+
+      <button class="btn btn-secondary btn-sm s-btn" (click)="buscaUser()">
+        Buscar
+      </button>
+    </div>
+
+    <table class="table table-hover">
+      <thead>
+        <tr style="background-color: #e25f79; color: white">
+          <th scope="col">#</th>
+          <th scope="col">Dados Usuário</th>
+        </tr>
+        <h5 *ngIf="info" class="mt-3 ml-3">Nenhum resultado encontrado...</h5>
+      </thead>
+      <tr></tr>
+      <tbody
+        *ngFor="
+          let car of usuarios
+            | paginate: { itemsPerPage: count, currentPage: p };
+          index as i
+        "
+      >
+        <tr>
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <span class="style-list">NOME: </span>
+                {{ car.nome }}<br />
+                <span class="style-list">D.Nasc: </span>
+                {{ car.data_nasc }}
+                <span class="style-list ml-2">Sexo: </span> {{ car.sexo }}<br />
+                <span class="style-list">CPF: </span> {{ car.cpf }}<br />
+              </div>
+
+              <div class="form-group col-md-6">
+                <span class="style-list">CNS: </span> {{ car.cns }}<br />
+                <span class="style-list">PROC: </span>
+                {{ car.detalhe }}
+                <span class="style-list ml-2">UBS: </span>{{ car.ubs }}<br />
+                <span class="style-list">DATA: </span>
+                {{ car.dia | date: 'dd/MM/yyyy'}}
+                <span class="style-list ml-2">HORÁRIO: </span>
+                {{ car.horas }}
+
+             
+               
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="text-right">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

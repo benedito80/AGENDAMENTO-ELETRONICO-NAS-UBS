@@ -1,0 +1,35 @@
+.blo_container {
+    width: 100%;
+    margin: -20px 0;
+  }
+  
+  .blo_box {
+    width: 100%;
+    padding: 2% 10%;
+  }
+  
+  .sm {
+    vertical-align: middle;
+  }
+  
+  .style-h5 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    background-color: #e25f79;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 10px;
+  }
+  
+  .style-list {
+    font-size: 0.8rem;
+    color: #e25f79;
+    font-weight: 500;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .blo_box {
+      padding: 10% 6%;
+    }
+  }
+  
