@@ -20,6 +20,9 @@
 
 - Lembrando... para o projeto funcionar em sua máquina seu ambiente deve estar configurado adequadamente, ou seja, ter o node, mongo, ide tudo instalado e funcionando de forma correta, ambos projetos rodaram em localhost: front porta: 5300 e back na porta: 3002
 
+- Defina um arquivo chamado ".env" na raiz do diretório “backend” com a seguinte propriedade e valor: ( JWT_SECRET = ?????? ). Caso contrário sua aplicação não irá funcionar de forma correta: 
+
+
 - Informações do funcionamento de todo o sistema: https://drive.google.com/file/d/1gCC-fgKyHqk3bwEtReJ6Cc4mzJ3HzLT-/view?usp=sharing
 
 
